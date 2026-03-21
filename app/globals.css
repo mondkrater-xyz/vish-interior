@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cream: #F5F0E8;
+  --parchment: #EDE6D6;
+  --warm: #D4C5A9;
+  --stone: #A89880;
+  --charcoal: #2C2825;
+  --ash: #6B6460;
+  --fog: #E8E2D9;
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Jost', Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--cream);
+  color: var(--charcoal);
+  font-family: var(--font-body);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ── Typography ─────────────────────────────── */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* ── Scrollbar ──────────────────────────────── */
+::-webkit-scrollbar {
+  width: 1px;
+}
+::-webkit-scrollbar-track {
+  background: var(--cream);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--stone);
+}
+
+/* ── Selection ──────────────────────────────── */
+::selection {
+  background: var(--warm);
+  color: var(--charcoal);
+}
+
+/* ── Focus ──────────────────────────────────── */
+:focus-visible {
+  outline: 1px solid var(--stone);
+  outline-offset: 4px;
+}
+
+/* ── Hero crossfade ─────────────────────────── */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* ── Reveal animation ───────────────────────── */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Image hover ────────────────────────────── */
+.portfolio-img {
+  transition: transform 2.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              filter 1.8s ease;
+  filter: brightness(0.97);
+}
+
+.portfolio-item:hover .portfolio-img {
+  transform: scale(1.035);
+  filter: brightness(1.02);
+}
+
+/* ── Hairline divider ───────────────────────── */
+.hairline {
+  width: 40px;
+  height: 1px;
+  background: var(--stone);
+}
+
+/* ── Cursor ─────────────────────────────────── */
+* {
+  cursor: default;
+}
+a, button {
+  cursor: pointer;
+}
+
+/* ── Nav link ───────────────────────────────── */
+.nav-link {
+  position: relative;
+  letter-spacing: 0.2em;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  color: var(--charcoal);
+  transition: opacity 0.4s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--charcoal);
+  transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ── Input ──────────────────────────────────── */
+.vish-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--warm);
+  padding: 10px 0;
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--charcoal);
+  letter-spacing: 0.05em;
+  transition: border-color 0.4s ease;
+  outline: none;
+}
+
+.vish-input::placeholder {
+  color: var(--stone);
+}
+
+.vish-input:focus {
+  border-bottom-color: var(--charcoal);
+}
+
+/* ── Submit button ──────────────────────────── */
+.vish-btn {
+  display: inline-block;
+  padding: 12px 0;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--charcoal);
+  border: none;
+  border-bottom: 1px solid var(--charcoal);
+  background: transparent;
+  transition: opacity 0.4s ease, letter-spacing 0.6s ease;
+  cursor: pointer;
+}
+
+.vish-btn:hover {
+  opacity: 0.5;
+  letter-spacing: 0.35em;
+}
