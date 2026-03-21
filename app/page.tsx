@@ -6,7 +6,6 @@ import Portfolio from '@/components/Portfolio'
 import About from '@/components/About'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
-import AudioToggle from '@/components/AudioToggle'
 
 export default function Home() {
   return (
@@ -17,7 +16,6 @@ export default function Home() {
       <About />
       <Contact />
       <Footer />
-      <AudioToggle />
     </main>
   )
 }
