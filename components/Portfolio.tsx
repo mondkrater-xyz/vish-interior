@@ -1,68 +1,53 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 
-/*
- * PORTFOLIO PROJECTS
- * Replace `src` with Viktoria's actual project photos.
- * Recommended: mix portrait (2:3) and landscape (3:2) for visual rhythm.
- * Update `title`, `location`, `category` with real project names.
- */
+const PROJECT_DESCRIPTION = [
+  'Mój pierwszy projekt w zabytkowej kamienicy w samym centrum Krakowa. Każda decyzja wymagała uzgodnienia z konserwatorem zabytków, a wszelkie zmiany układu mogły być wprowadzone wyłącznie na podstawie projektu architekta z uprawnieniami.',
+  'Inwestor uzyskał zgodę jedynie na remont łazienki oraz wyprowadzenie instalacji pod kuchnię. Cała reszta pozostała bez zmian. Zamiast więc przebudowywać przestrzeń, kluczowe było wykorzystanie tego, co już istniało, i szukanie rozwiązań w ramach tych ograniczeń.',
+  'Mieszkanie zaprojektowano jako inwestycję pod wynajem krótkoterminowy, ale bez typowego, neutralnego podejścia do wnętrza. Wnętrze ma swoją logikę i zapada w pamięć dzięki detalom.',
+  'Strefa kuchni z częścią jadalnianą opiera się na kontraście. Na ścianie tapeta z „Guernicą" Picassa, która nadaje rytm całemu wnętrzu. Poniżej tekstylna draperia ukrywająca duży grzejnik. Rozwiązanie wynikające z ograniczeń stało się elementem spinającym całość, a miękka tkanina pojawia się również w innych częściach mieszkania. Ściana nad blatem wykonana jest z lustra, które odbija światło z okien i optycznie powiększa przestrzeń.',
+  'Strefa wypoczynkowa zbudowana jest wokół jednego wyraźnego akcentu. Sofa w kolorze ciemnej zieleni, inspirowanej igliwiem. Niska, masywna, o miękkiej formie, stanowi centrum kompozycji i jednocześnie pełni funkcję spania. Obok znajduje się wnęka z pełnowymiarowym łóżkiem dwuosobowym.',
+  'To projekt, w którym ograniczenia wyznaczyły kierunek. Wszystkie rozwiązania pojawiły się właśnie dzięki nim.',
+]
+
 const PROJECTS = [
   {
     id: 1,
     src: '/images/hero-1.jpg',
-    alt: 'Living room with statement mural and green sectional',
-    title: 'Mokotów Residence',
-    location: 'Warsaw',
-    category: 'Residential',
+    alt: 'Salon z muralem Picassa i zieloną sofą',
+    title: 'Kamienica Florianówka',
+    location: 'Kraków',
+    category: 'Mieszkalne',
     aspect: 'landscape',
   },
   {
     id: 2,
     src: '/images/hero-2.jpg',
-    alt: 'Dining area with walnut table and globe pendants',
-    title: 'Żoliborz Apartment',
-    location: 'Warsaw',
-    category: 'Residential',
+    alt: 'Strefa jadalniana z okrągłym stołem',
+    title: 'Kamienica Florianówka',
+    location: 'Kraków',
+    category: 'Mieszkalne',
     aspect: 'landscape',
   },
   {
     id: 3,
     src: '/images/hero-3.jpg',
-    alt: 'Open living space with Picasso mural and checker rug',
-    title: 'Wilanów Loft',
-    location: 'Warsaw',
-    category: 'Residential',
+    alt: 'Przestrzeń dzienna z muralem i dywanem w kratę',
+    title: 'Kamienica Florianówka',
+    location: 'Kraków',
+    category: 'Mieszkalne',
     aspect: 'landscape',
   },
   {
     id: 4,
     src: '/images/hero-4.jpg',
-    alt: 'Bright salon with double windows and natural light',
-    title: 'Śródmieście Interior',
-    location: 'Warsaw',
-    category: 'Residential',
+    alt: 'Jasny salon z podwójnymi oknami',
+    title: 'Kamienica Florianówka',
+    location: 'Kraków',
+    category: 'Mieszkalne',
     aspect: 'landscape',
-  },
-  {
-    id: 5,
-    src: '/images/project-5.jpg',
-    alt: 'Coming soon',
-    title: 'Praga Studio',
-    location: 'Warsaw',
-    category: 'Commercial',
-    aspect: 'portrait',
-  },
-  {
-    id: 6,
-    src: '/images/project-6.jpg',
-    alt: 'Coming soon',
-    title: 'Ursynów Residence',
-    location: 'Warsaw',
-    category: 'Residential',
-    aspect: 'portrait',
   },
 ]
 
@@ -90,6 +75,7 @@ function useRevealOnScroll(threshold = 0.1) {
 
 function ProjectCard({ project, delay }: { project: typeof PROJECTS[0]; delay: number }) {
   const ref = useRevealOnScroll(0.08)
+  const [expanded, setExpanded] = useState(false)
 
   return (
     <div
@@ -113,7 +99,7 @@ function ProjectCard({ project, delay }: { project: typeof PROJECTS[0]; delay: n
       </div>
 
       {/* Meta */}
-      <div className="flex items-start justify-between">
+      <div className="flex items-start justify-between mb-3">
         <div>
           <p
             className="text-charcoal text-sm font-light mb-0.5"
@@ -135,6 +121,43 @@ function ProjectCard({ project, delay }: { project: typeof PROJECTS[0]; delay: n
           {project.category}
         </span>
       </div>
+
+      {/* Description */}
+      <div style={{ fontFamily: 'var(--font-jost)' }}>
+        <p
+          className="text-ash text-xs leading-relaxed"
+          style={{ fontWeight: 300, letterSpacing: '0.02em' }}
+        >
+          {PROJECT_DESCRIPTION[0]}
+        </p>
+
+        {/* Expandable paragraphs */}
+        <div
+          style={{
+            overflow: 'hidden',
+            maxHeight: expanded ? '600px' : '0px',
+            transition: 'max-height 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+          }}
+        >
+          {PROJECT_DESCRIPTION.slice(1).map((para, i) => (
+            <p
+              key={i}
+              className="text-ash text-xs leading-relaxed mt-3"
+              style={{ fontWeight: 300, letterSpacing: '0.02em' }}
+            >
+              {para}
+            </p>
+          ))}
+        </div>
+
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className="mt-3 text-stone text-xs tracking-widest uppercase transition-colors duration-500 hover:text-charcoal"
+          style={{ letterSpacing: '0.2em', fontWeight: 200 }}
+        >
+          {expanded ? 'Zwiń —' : 'Czytaj więcej +'}
+        </button>
+      </div>
     </div>
   )
 }
@@ -150,30 +173,21 @@ export default function Portfolio() {
           className="text-stone text-xs mb-4 tracking-widest uppercase"
           style={{ letterSpacing: '0.3em', fontFamily: 'var(--font-jost)', fontWeight: 200 }}
         >
-          Selected Work
+          Wybrane realizacje
         </p>
         <h2
           className="font-display font-light text-charcoal"
           style={{ fontSize: 'clamp(2rem, 5vw, 4rem)', fontStyle: 'italic' }}
         >
-          Projects
+          Realizacje
         </h2>
       </div>
 
-      {/*
-       * Masonry-style grid:
-       * — mobile: 1 column
-       * — tablet: 2 columns
-       * — desktop: staggered 2-col with vertical offsets for the portrait/landscape mix
-       */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-14 gap-y-16 md:gap-y-24">
         {PROJECTS.map((project, i) => (
           <div
             key={project.id}
-            className={
-              // Offset every other column on desktop for depth
-              i % 2 === 1 ? 'md:mt-20' : ''
-            }
+            className={i % 2 === 1 ? 'md:mt-20' : ''}
           >
             <ProjectCard project={project} delay={i % 2 === 0 ? 0 : 120} />
           </div>

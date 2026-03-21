@@ -2,12 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react'
 
-/*
- * CONTACT DETAILS
- * Replace with Viktoria's actual email and location.
- */
 const CONTACT_EMAIL = 'hello@vishstudio.com'
-const CONTACT_LOCATION = 'Warsaw, Poland'
+const CONTACT_LOCATION = 'Kraków, Polska'
 
 function useReveal(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null)
@@ -42,13 +38,8 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    /*
-     * TODO: Wire up to your email service.
-     * Options: Resend, Formspree, EmailJS, or a Next.js API route.
-     * For now, opens the user's mail client as a fallback.
-     */
-    const subject = encodeURIComponent(`Inquiry from ${form.name}`)
-    const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`)
+    const subject = encodeURIComponent(`Zapytanie od ${form.name}`)
+    const body = encodeURIComponent(`Imię i nazwisko: ${form.name}\nEmail: ${form.email}\n\n${form.message}`)
     window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`
     setSent(true)
     setTimeout(() => setSent(false), 4000)
@@ -64,15 +55,15 @@ export default function Contact() {
             className="text-stone text-xs mb-4 tracking-widest uppercase"
             style={{ letterSpacing: '0.3em', fontFamily: 'var(--font-jost)', fontWeight: 200 }}
           >
-            Get in Touch
+            Porozmawiajmy
           </p>
           <h2
             className="font-display font-light text-charcoal mb-6 leading-tight"
             style={{ fontSize: 'clamp(2rem, 5vw, 4rem)', fontStyle: 'italic' }}
           >
-            Let's create something
+            Stwórzmy coś wyjątkowego
             <br />
-            <span style={{ fontStyle: 'normal' }}>together.</span>
+            <span style={{ fontStyle: 'normal' }}>razem.</span>
           </h2>
           <div className="hairline" />
         </div>
@@ -98,7 +89,7 @@ export default function Contact() {
             </div>
             <div>
               <p className="text-stone text-xs mb-2 tracking-widest uppercase" style={{ letterSpacing: '0.2em', fontWeight: 200 }}>
-                Based in
+                Lokalizacja
               </p>
               <p className="text-charcoal text-sm" style={{ letterSpacing: '0.02em' }}>
                 {CONTACT_LOCATION}
@@ -106,13 +97,13 @@ export default function Contact() {
             </div>
             <div>
               <p className="text-stone text-xs mb-2 tracking-widest uppercase" style={{ letterSpacing: '0.2em', fontWeight: 200 }}>
-                Services
+                Usługi
               </p>
               <ul className="text-charcoal text-sm space-y-1" style={{ letterSpacing: '0.02em' }}>
-                <li>Full Interior Design</li>
-                <li>Space Planning</li>
-                <li>Design Consultation</li>
-                <li>Styling & Curation</li>
+                <li>Kompleksowe projektowanie wnętrz</li>
+                <li>Planowanie przestrzeni</li>
+                <li>Konsultacje projektowe</li>
+                <li>Stylizacja i dobór elementów</li>
               </ul>
             </div>
           </div>
@@ -121,16 +112,14 @@ export default function Contact() {
           <div ref={formRef} className="reveal md:col-span-3" style={{ transitionDelay: '100ms' }}>
             {sent ? (
               <div className="flex flex-col items-start justify-center h-full py-12">
-                <p
-                  className="font-display text-2xl text-charcoal italic font-light"
-                >
-                  Thank you.
+                <p className="font-display text-2xl text-charcoal italic font-light">
+                  Dziękuję.
                 </p>
                 <p
                   className="text-stone text-sm mt-3"
                   style={{ fontFamily: 'var(--font-jost)', fontWeight: 300 }}
                 >
-                  I'll be in touch shortly.
+                  Odezwę się wkrótce.
                 </p>
               </div>
             ) : (
@@ -141,7 +130,7 @@ export default function Contact() {
                     className="block text-stone text-xs mb-2 tracking-widest uppercase"
                     style={{ letterSpacing: '0.2em', fontFamily: 'var(--font-jost)', fontWeight: 200 }}
                   >
-                    Name
+                    Imię i nazwisko
                   </label>
                   <input
                     id="name"
@@ -151,7 +140,7 @@ export default function Contact() {
                     value={form.name}
                     onChange={handleChange}
                     className="vish-input"
-                    placeholder="Your name"
+                    placeholder="Twoje imię"
                     autoComplete="name"
                   />
                 </div>
@@ -171,7 +160,7 @@ export default function Contact() {
                     value={form.email}
                     onChange={handleChange}
                     className="vish-input"
-                    placeholder="your@email.com"
+                    placeholder="twoj@email.com"
                     autoComplete="email"
                   />
                 </div>
@@ -181,7 +170,7 @@ export default function Contact() {
                     className="block text-stone text-xs mb-2 tracking-widest uppercase"
                     style={{ letterSpacing: '0.2em', fontFamily: 'var(--font-jost)', fontWeight: 200 }}
                   >
-                    Message
+                    Wiadomość
                   </label>
                   <textarea
                     id="message"
@@ -191,11 +180,11 @@ export default function Contact() {
                     value={form.message}
                     onChange={handleChange}
                     className="vish-input resize-none"
-                    placeholder="Tell me about your project…"
+                    placeholder="Opowiedz mi o swoim projekcie…"
                   />
                 </div>
                 <button type="submit" className="vish-btn">
-                  Send Message
+                  Wyślij wiadomość
                 </button>
               </form>
             )}

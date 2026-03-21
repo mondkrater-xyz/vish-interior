@@ -3,9 +3,9 @@
 import { useEffect, useState } from 'react'
 
 const links = [
-  { label: 'Work', href: '#portfolio' },
+  { label: 'Realizacje', href: '#portfolio' },
   { label: 'Studio', href: '#about' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Kontakt', href: '#contact' },
 ]
 
 export default function Nav() {
@@ -109,7 +109,7 @@ export default function Nav() {
           className="absolute bottom-12 text-stone text-xs tracking-widest uppercase"
           style={{ letterSpacing: '0.25em', fontFamily: 'var(--font-jost)' }}
         >
-          VISH Interior Studio
+          VISH Interior Studio · Kraków
         </p>
       </div>
     </>

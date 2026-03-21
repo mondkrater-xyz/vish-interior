@@ -94,7 +94,7 @@ export default function Hero() {
             className="text-fog/70 text-xs mb-6 tracking-widest uppercase"
             style={{ letterSpacing: '0.3em', fontFamily: 'var(--font-jost)', fontWeight: 200 }}
           >
-            Warsaw · Interior Design
+            Kraków · Projektowanie wnętrz
           </p>
 
           {/* Main headline */}
@@ -106,9 +106,9 @@ export default function Hero() {
               letterSpacing: '-0.01em',
             }}
           >
-            Spaces that feel
+            Przestrzenie, które
             <br />
-            <span style={{ fontStyle: 'normal', fontWeight: 300 }}>like coming home.</span>
+            <span style={{ fontStyle: 'normal', fontWeight: 300 }}>brzmią jak dom.</span>
           </h1>
 
           {/* CTA */}
@@ -117,7 +117,7 @@ export default function Hero() {
             className="vish-btn text-fog border-fog/60 hover:border-fog"
             style={{ color: 'rgba(232,226,217,0.85)' }}
           >
-            View Work
+            Zobacz realizacje
           </button>
         </div>
 
