@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 
-const CONTACT_EMAIL = 'hello@vishstudio.com'
+const CONTACT_EMAIL = 'contact@vishdsgn.com'
 const CONTACT_LOCATION = 'Kraków, Polska'
 
 function useReveal(threshold = 0.1) {

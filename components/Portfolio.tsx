@@ -21,13 +21,13 @@ const DESC_BEDROOM = [
 
 const PROJECTS = [
   { id: 1, src: '/images/p1.jpg', alt: 'Salon z sofą i muralem Picassa',              title: 'Kamienica Florianówka', location: 'Kraków', category: 'Mieszkalne', aspect: 'landscape', desc: DESC_LIVING },
-  { id: 2, src: '/images/p2.jpg', alt: 'Wnęka sypialniana z baldachimem z tkaniny',   title: 'Kamienica Florianówka', location: 'Kraków', category: 'Mieszkalne', aspect: 'portrait',  desc: DESC_BEDROOM },
+  { id: 2, src: '/images/p2.jpg', alt: 'Wnęka sypialniana z baldachimem z tkaniny',   title: 'Kamienica Florianówka', location: 'Kraków', category: 'Mieszkalne', aspect: 'landscape', desc: DESC_BEDROOM },
   { id: 3, src: '/images/p3.jpg', alt: 'Widok z wnęki sypialnianej na salon',          title: 'Kamienica Florianówka', location: 'Kraków', category: 'Mieszkalne', aspect: 'landscape', desc: DESC_LIVING },
   { id: 4, src: '/images/p4.jpg', alt: 'Przestrzeń dzienna z muralem i dywanem',       title: 'Kamienica Florianówka', location: 'Kraków', category: 'Mieszkalne', aspect: 'landscape', desc: DESC_LIVING },
   { id: 5, src: '/images/p5.jpg', alt: 'Jasny salon z podwójnymi oknami',              title: 'Kamienica Florianówka', location: 'Kraków', category: 'Mieszkalne', aspect: 'landscape', desc: DESC_LIVING },
   { id: 6, src: '/images/p6.jpg', alt: 'Detal wnętrza z sofą i lampami kulowymi',      title: 'Kamienica Florianówka', location: 'Kraków', category: 'Mieszkalne', aspect: 'landscape', desc: DESC_LIVING },
   { id: 7, src: '/images/p7.jpg', alt: 'Panorama salonu w świetle dziennym',           title: 'Kamienica Florianówka', location: 'Kraków', category: 'Mieszkalne', aspect: 'landscape', desc: DESC_LIVING },
-  { id: 8, src: '/images/p8.jpg', alt: 'Detal łóżka z lampą przyścienną i draperią',  title: 'Kamienica Florianówka', location: 'Kraków', category: 'Mieszkalne', aspect: 'portrait',  desc: DESC_BEDROOM },
+  { id: 8, src: '/images/p8.jpg', alt: 'Detal łóżka z lampą przyścienną i draperią',  title: 'Kamienica Florianówka', location: 'Kraków', category: 'Mieszkalne', aspect: 'landscape', desc: DESC_BEDROOM },
   { id: 9, src: '/images/p9.jpg', alt: 'Wnętrze z oknami i zieloną sofą',             title: 'Kamienica Florianówka', location: 'Kraków', category: 'Mieszkalne', aspect: 'landscape', desc: DESC_LIVING },
 ]
 
