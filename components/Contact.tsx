@@ -5,6 +5,17 @@ import { useEffect, useRef, useState } from 'react'
 const CONTACT_EMAIL = 'contact@vishdsgn.com'
 const CONTACT_LOCATION = 'Kraków, Polska'
 
+// ── EmailJS config ──────────────────────────────────────────────────────────
+// 1. Create a free account at https://www.emailjs.com
+// 2. Add an Email Service (Gmail) → copy the Service ID
+// 3. Create an Email Template → copy the Template ID
+// 4. Go to Account → API Keys → copy your Public Key
+// Then paste all three values below:
+const EMAILJS_SERVICE_ID  = 'service_ri5yi1l'   // e.g. 'service_abc123'
+const EMAILJS_TEMPLATE_ID = 'template_j9nw4km'  // e.g. 'template_xyz789'
+const EMAILJS_PUBLIC_KEY  = 'i9RZ43LPcTMUk00en'   // e.g. 'AbCdEfGhIjKlMnOp'
+// ────────────────────────────────────────────────────────────────────────────
+
 function useReveal(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null)
   useEffect(() => {
@@ -30,19 +41,38 @@ export default function Contact() {
   const formRef = useReveal()
 
   const [form, setForm] = useState({ name: '', email: '', message: '' })
-  const [sent, setSent] = useState(false)
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    const subject = encodeURIComponent(`Zapytanie od ${form.name}`)
-    const body = encodeURIComponent(`Imię i nazwisko: ${form.name}\nEmail: ${form.email}\n\n${form.message}`)
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`
-    setSent(true)
-    setTimeout(() => setSent(false), 4000)
+    setStatus('sending')
+    try {
+      const res = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          service_id:  EMAILJS_SERVICE_ID,
+          template_id: EMAILJS_TEMPLATE_ID,
+          user_id:     EMAILJS_PUBLIC_KEY,
+          template_params: {
+            from_name:  form.name,
+            from_email: form.email,
+            message:    form.message,
+            to_email:   CONTACT_EMAIL,
+          },
+        }),
+      })
+      if (!res.ok) throw new Error('EmailJS error')
+      setStatus('sent')
+      setForm({ name: '', email: '', message: '' })
+    } catch {
+      setStatus('error')
+      setTimeout(() => setStatus('idle'), 4000)
+    }
   }
 
   return (
@@ -110,7 +140,7 @@ export default function Contact() {
 
           {/* Right: form */}
           <div ref={formRef} className="reveal md:col-span-3" style={{ transitionDelay: '100ms' }}>
-            {sent ? (
+            {status === 'sent' ? (
               <div className="flex flex-col items-start justify-center h-full py-12">
                 <p className="font-display text-2xl text-charcoal italic font-light">
                   Dziękuję.
@@ -183,9 +213,24 @@ export default function Contact() {
                     placeholder="Opowiedz mi o swoim projekcie…"
                   />
                 </div>
-                <button type="submit" className="vish-btn">
-                  Wyślij wiadomość
-                </button>
+                <div className="space-y-3">
+                  <button
+                    type="submit"
+                    className="vish-btn"
+                    disabled={status === 'sending'}
+                    style={{ opacity: status === 'sending' ? 0.6 : 1, cursor: status === 'sending' ? 'default' : 'pointer' }}
+                  >
+                    {status === 'sending' ? 'Wysyłanie…' : 'Wyślij wiadomość'}
+                  </button>
+                  {status === 'error' && (
+                    <p
+                      className="text-sm"
+                      style={{ fontFamily: 'var(--font-jost)', fontWeight: 300, color: '#a08070' }}
+                    >
+                      Coś poszło nie tak. Napisz bezpośrednio na {CONTACT_EMAIL}
+                    </p>
+                  )}
+                </div>
               </form>
             )}
           </div>

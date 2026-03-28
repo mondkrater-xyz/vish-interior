@@ -21,7 +21,6 @@ const DESC_BEDROOM = [
 
 const PROJECTS = [
   { id: 1, src: '/images/p1.jpg', alt: 'Salon z sofą i muralem Picassa',              title: 'Kamienica Florianówka', location: 'Kraków', category: 'Mieszkalne', aspect: 'landscape', desc: DESC_LIVING },
-  { id: 2, src: '/images/p2.jpg', alt: 'Wnęka sypialniana z baldachimem z tkaniny',   title: 'Kamienica Florianówka', location: 'Kraków', category: 'Mieszkalne', aspect: 'landscape', desc: DESC_BEDROOM },
   { id: 3, src: '/images/p3.jpg', alt: 'Widok z wnęki sypialnianej na salon',          title: 'Kamienica Florianówka', location: 'Kraków', category: 'Mieszkalne', aspect: 'landscape', desc: DESC_LIVING },
   { id: 4, src: '/images/p4.jpg', alt: 'Przestrzeń dzienna z muralem i dywanem',       title: 'Kamienica Florianówka', location: 'Kraków', category: 'Mieszkalne', aspect: 'landscape', desc: DESC_LIVING },
   { id: 5, src: '/images/p5.jpg', alt: 'Jasny salon z podwójnymi oknami',              title: 'Kamienica Florianówka', location: 'Kraków', category: 'Mieszkalne', aspect: 'landscape', desc: DESC_LIVING },

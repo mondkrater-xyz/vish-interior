@@ -28,20 +28,15 @@ const HERO_IMAGES = [
   },
 ]
 
-const INTERVAL_MS = 5500
-const FADE_MS = 1800
+const INTERVAL_MS = 7000
+const FADE_MS = 2500
 
 export default function Hero() {
   const [current, setCurrent] = useState(0)
-  const [fading, setFading] = useState(false)
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setFading(true)
-      setTimeout(() => {
-        setCurrent((prev) => (prev + 1) % HERO_IMAGES.length)
-        setFading(false)
-      }, FADE_MS)
+      setCurrent((prev) => (prev + 1) % HERO_IMAGES.length)
     }, INTERVAL_MS)
 
     return () => clearInterval(timer)
@@ -62,9 +57,9 @@ export default function Hero() {
           key={img.src}
           className="absolute inset-0 transition-opacity"
           style={{
-            opacity: i === current ? (fading ? 0 : 1) : 0,
+            opacity: i === current ? 1 : 0,
             transitionDuration: `${FADE_MS}ms`,
-            transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+            transitionTimingFunction: 'ease-in-out',
             zIndex: i === current ? 1 : 0,
           }}
           aria-hidden={i !== current}
@@ -137,7 +132,7 @@ export default function Hero() {
           {HERO_IMAGES.map((_, i) => (
             <button
               key={i}
-              onClick={() => setCurrent(i)}
+              onClick={() => { setCurrent(i) }}
               className="w-px transition-all duration-700"
               style={{
                 height: i === current ? '28px' : '12px',
